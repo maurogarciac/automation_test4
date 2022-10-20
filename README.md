@@ -16,13 +16,13 @@
     ```
 3. Activate the Environment:
     ```shell
-    venv/Scripts/activate
+    . venv/Scripts/activate
     ```
 4. Install the required Packages:
     ```shell
     python -m pip install -r requirements.txt
     ``` 
-5. Run tests with a browser as a parameter (firefox, chrome):
+5. Run tests by setting a browser as a parameter (firefox, chrome):
     ```shell
     python run_tests.py --browser firefox
     ```
