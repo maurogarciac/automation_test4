@@ -22,7 +22,7 @@
     ```shell
     python -m pip install -r requirements.txt
     ``` 
-5. Run tests with a browser as a parameter (firefox, chrome, edge):
+5. Run tests with a browser as a parameter (firefox, chrome):
     ```shell
-    python run_tests.py firefox
+    python run_tests.py --browser firefox
     ```
