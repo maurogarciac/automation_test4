@@ -1,6 +1,8 @@
+import pytest
 
 # 1. Go to website
 #   website opens
+
 
 # 2. Go to Suggestion Class Element
 #   enter Me in the box
@@ -30,4 +32,30 @@
 #   Return to the first tab
 #   (Only use Xpath and Css)
 
-# 6.
+# 6. Go to Switch to Alert Element
+#   Input the string "Stori Card"
+#   Click the Alert button
+#   Print the text in the alert
+#   Click OK
+#   Make sure the text equals "Hello Stori Card, are you sure..."
+#   Click OK
+#   (Use Xpath and Css)
+
+# 7. Go to the Web Table Element.
+#   Print the amount of courses that are $25
+#   Print the name of every course that is $25
+#   (Use Css selector Child to Parent)
+
+# 8. Go to the Web Table Fixed Header Element.
+#   Print the name of all the engineers.
+#   (Use Xpath and Css child to parent)
+
+# 9. Go to the Iframe Web Element
+#   Hightlight some of the text in blue
+#   "His mentorship program..."
+#   (Use Xpath and print only the ODD indexes)
+
+# 10. Make an HTML Report with all test results
+#   Save it in a folder called Reports
+#   (make an XML report to)
+
