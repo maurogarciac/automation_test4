@@ -1,4 +1,3 @@
-import subprocess
 import pytest
 from selenium import webdriver
 
@@ -11,8 +10,6 @@ class Manager():
 
     def start(self) -> None:
         print(self.driver)
-        #subprocess.run(". activate", cwd="\automation_test4\venv\Scripts")
-        #subprocess.run("python -m pytest", cwd="\automation_test4")
         pytest.main(["-x", "steps"])   
     
 
