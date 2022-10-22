@@ -9,5 +9,5 @@ import os
 class ChromeDriver():
 
     def get_driver() -> webdriver:
-        os.environ['WDM_LOG'] = str(logging.NOTSET)
+        #os.environ['WDM_LOG'] = str(logging.NOTSET)
         return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))

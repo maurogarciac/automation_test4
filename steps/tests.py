@@ -1,7 +1,24 @@
 import pytest
+from selenium import webdriver
+from manager import Manager
+from page_objects.home_page import HomePage
+
+@pytest.fixture(scope='module')
+def module_browser(self, request) -> webdriver:
+    self.driver = Manager.get_driver()
+    def fin():
+        self.driver.quit()
+    request.addfinalizer(fin())
+    return self.driver
+
 
 # 1. Go to website
 #   website opens
+
+def test_1(self) -> None:
+    homepage = HomePage(self.driver)
+    homepage.go_to_page()
+    assert True
 
 
 # 2. Go to Suggestion Class Element
@@ -58,4 +75,5 @@ import pytest
 # 10. Make an HTML Report with all test results
 #   Save it in a folder called Reports
 #   (make an XML report to)
+
 
