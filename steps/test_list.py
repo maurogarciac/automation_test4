@@ -1,4 +1,3 @@
-import pytest
 from selenium import webdriver
 from manager import Manager
 from page_objects.home_page import HomePage
@@ -6,7 +5,7 @@ from page_objects.home_page import HomePage
 class Tests():
 
     
-    @pytest.fixture(scope='module')
+    #@pytest.fixture(scope='module')
     def module_browser(self, request) -> webdriver:
         self.driver = Manager.get_driver()
         def fin():

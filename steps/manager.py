@@ -1,4 +1,3 @@
-import pytest
 from selenium import webdriver
 
 
@@ -10,7 +9,7 @@ class Manager():
 
     def start(self) -> None:
         print(self.driver)
-        pytest.main(["-x", "steps"])   
+        #pytest.main(["-x", "steps"])   
     
 
     def get_driver(self) -> webdriver:
