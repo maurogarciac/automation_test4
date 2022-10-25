@@ -22,7 +22,6 @@ class Tests():
         homepage.go_to_page()
         assert True
 
-
     # 2. Go to Suggestion Class Element
     #   enter Me in the box
     #   iterate through value selected until it matches mexico
