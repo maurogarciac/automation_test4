@@ -1,26 +1,15 @@
-from selenium import webdriver
-from manager import Manager
-from page_objects.home_page import HomePage
-
-class Tests():
-
-    
-    #@pytest.fixture(scope='module')
-    def module_browser(self, request) -> webdriver:
-        self.driver = Manager.get_driver()
-        def fin():
-            self.driver.quit()
-        request.addfinalizer(fin())
-        return self.driver
+from config.settings import Urls
+from pages.home_page import HomePage
 
 
-    # 1. Go to website
-    #   website opens
+class TestClass:
 
-    def test_1(self) -> None:
-        homepage = HomePage(self.driver)
-        homepage.go_to_page()
-        assert True
+    # 1. Go to website, it opens
+
+    def test_1(self, pages, driver) -> None:
+        home_page: HomePage = pages['home_page']
+        home_page.go_to_page()
+        assert Urls.HOME_PAGE in driver.current_url
 
     # 2. Go to Suggestion Class Element
     #   enter Me in the box
@@ -76,5 +65,3 @@ class Tests():
     # 10. Make an HTML Report with all test results
     #   Save it in a folder called Reports
     #   (make an XML report to)
-
-
