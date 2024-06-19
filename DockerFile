@@ -1,0 +1,12 @@
+FROM python:3.12-alpine
+
+
+# create virtual environment
+RUN apt update && apt install -y python3-venv
+RUN python3 -m venv .venv
+RUN . .venv/bin/activate
+
+# use wheel to install python dependencies
+RUN pip install --upgrade pip  \
+    pip install wheel \
+    pip install --no-cache-dir -r requirements.txt

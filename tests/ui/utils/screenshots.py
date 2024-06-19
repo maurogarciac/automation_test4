@@ -1,42 +1,64 @@
-import datetime
-import os
+import re
+from datetime import datetime
+from logging import Logger, getLogger
+from os import path, makedirs, getcwd
+
+from _pytest.fixtures import FixtureRequest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+lg: Logger = getLogger(__name__)
 
 
-def make_screenshots_dir(request) -> str:
-    """ 
-        Create a directory to store screenshots for a test (if it doesn't exist already) 
+class ScreenshotUtils:
+    timestamp: str | None = None
 
-        Params:
-        @request: Pytest request fixture
+    def __init__(self):
+        self.timestamp = datetime.now().strftime('%Y-%b-%d-%H:%M')
 
-        Return:
-    """
-    # Name of the new directory
-    new_dir_name: str = f"{datetime.date.today()}-{datetime.datetime.now().hour}hs-{datetime.datetime.now().minute}mins-{request.node.name}"
-    cwd: str = os.getcwd()
-    screenshots_directory: str = os.path.join(cwd, "screenshots")
-    os.makedirs(screenshots_directory, exist_ok = True)
-    new_path: str = os.path.join(screenshots_directory, new_dir_name)
-    # Checks if a directory exists, and creates it
-    candidate: str = new_path
-    created: bool = False
-    i = 0
-    while not created:
-        try:
-            os.mkdir(candidate)
-            created = True
-        except:
-            i += 1
-            candidate = f"{new_path}_{i}"
-    return candidate
+    def save_picture(self, request: FixtureRequest, driver: webdriver) -> None:
+        """
+            Take two screenshots, one of the full page and a partial screenshot.
 
+            Params:
+            @request: Pytest request fixture
+            @driver: Current webdriver
+        """
 
-def save_picture(request, driver: webdriver) -> None:
-    # Takes a screenshot of the page, and 
-    if driver is not None:
-        step_name: str = f"{request.node.name}"
-        if context.step.table is not None:
-            step_name = f"{step_name}_{context.step.table.iteration}"
-        screenshot_file_name_prefix: str = os.path.join(f"{context.current_screenshot_dir}", f"{context.scenario.name}-{context.step.line}")
-        driver.find_element_by_tag_name("body").screenshot(f"{screenshot_file_name_prefix}-full.png")
-        driver.save_screenshot(f"{screenshot_file_name_prefix}.png")
+        class_str = (re.search(r"\.(Test[A-Z]+)", str(request.cls))
+                     .group(1))  # A little stinky regex to find the class name from a full object str
+
+        if driver is not None:
+            screenshot_file_name: str = path.join(f"{self._make_screenshots_dir(class_str)}", f"{request.node.name}")
+            driver.find_element(By.TAG_NAME, "body").screenshot(f"{screenshot_file_name}-full.png")
+            driver.save_screenshot(f"{screenshot_file_name}.png")
+
+    def _make_screenshots_dir(self, test_class: str) -> str:
+        """
+            Create a directory to store screenshots for a test (if it doesn't exist already)
+
+            Params:
+            @request: Pytest request fixture
+
+            Return: Full path to screenshot directory
+        """
+
+        screenshots_directory: str = path.join(getcwd(), "reports/screenshots")
+        makedirs(screenshots_directory, exist_ok=True)  # Creates screenshots directory if it doesn't exist
+
+        if self.timestamp is None:
+            self.timestamp = datetime.now().strftime('%Y-%m-%d-%H:%M')
+        new_dir_name: str = f"{self.timestamp}-{test_class}"
+        new_path: str = path.join(screenshots_directory, new_dir_name)
+
+        candidate: str = new_path
+        i = 0
+        dir_exists: bool = path.exists(candidate)
+        if dir_exists:  # If the candidate doesn't exist, create it. Otherwise, append an int to the filename.
+            while path.exists(candidate):
+                i += 1
+                candidate = f"{new_path}_{i}"
+                makedirs(candidate)
+        elif not dir_exists:
+            makedirs(candidate)
+        return candidate

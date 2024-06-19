@@ -2,10 +2,14 @@
 
 Just a simple test automation framework with pytest that supports ui and api tests
 
-## Requirements
+## Requirements:
 
 * Python 3.12 installed
-* Make installed
+
+## Optional requirements (do yourself a favor):
+
+* Make 4.4.1 (or compatible version)
+* Docker 26.1.1 (or compatible version)
 
 ## Quick installation steps
 
@@ -30,6 +34,7 @@ Just a simple test automation framework with pytest that supports ui and api tes
     python -m pip install -r requirements.txt
     ``` 
 5. Run tests:
+   To run all the tests, just run `pytest` in local env or `make test` for docker container.
 
     ### Flags for execution:
         An optional '--browser' flag can be included after 'pytest' to specify the browser option (default is 'chrome'):
@@ -39,22 +44,27 @@ Just a simple test automation framework with pytest that supports ui and api tes
 
     1. api tests
     2. ui tests
-    3. all tests 
-    
-    - With make:
-        ```shell
-        make test_api
-        make test_ui
-        make test
-        ```
-    - Manually:
+
+    - Locally with pytest:
         ```shell
         pytest tests/api
         pytest tests/ui
-        pytest 
+        ```
+    - Locally with Make:
+        ```shell
+        make test_ui_f
+        make test_ui_hl
+        ```
+
+    - With Docker:
+        ```shell
+        make d_test
+        make d_test_api
+        make d_test_ui_hl
         ```
 
 ## To do:
 
-1. Fix config in makefile to sort out import issues
-2. Add more tests
+1. Add docker support
+2. Solve report generation issue (not generating rn)
+3. Add more tests

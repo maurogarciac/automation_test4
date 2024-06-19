@@ -1,4 +1,4 @@
-import pytest, logging
+import pytest
 from datetime import datetime
 
 

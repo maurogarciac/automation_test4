@@ -21,3 +21,8 @@ class TestUI:
         result: list = result_page.find_urls(5)
         lg.info(result)
         assert len(result) == 5
+
+    def test_that_fails(self, pages, driver):
+        home_page: HomePage = pages['home_page']
+        home_page.go_to_page()
+        assert "error" == driver.current_url
