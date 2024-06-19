@@ -8,5 +8,6 @@ load_dotenv(find_dotenv(".env"))
 class Urls:
     # we do a little wrapping
     HOME_PAGE: str = os.environ.get("HOME_PAGE_URL")
+    API: str = os.environ.get("API_URL")
 
 
