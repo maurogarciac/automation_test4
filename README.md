@@ -37,6 +37,7 @@ Just a simple test automation framework with pytest that supports ui and api tes
     ```shell
     python -m pip install -r requirements.txt
     ``` 
+5. Create an *.env* file with the contents of *.env.example*
 
 ## Docker setup steps:
 1. Clone this Repository and change directory into it:
@@ -45,10 +46,7 @@ Just a simple test automation framework with pytest that supports ui and api tes
     cd automation_test4
     ```
 
-2. I'm guessing probably run:
-    ```shell
-    docker-compose up
-    ```
+2. Either run `docker-compose up -d` or `make start`
 
 ## Run tests:  
 To run all the tests, just run `pytest` in local env or `make d_test` for docker container.  
@@ -83,5 +81,5 @@ An optional `--browser` flag can be included after `pytest` to specify the brows
 
 ## To do:
 
-1. Add docker support
+1. Export reports from docker container to docker-reports directory
 2. Add more tests

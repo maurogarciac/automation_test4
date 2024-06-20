@@ -3,15 +3,7 @@ TAG=0.0.1
 
 .PHONY: d_test
 d_test:
-	@docker compose exec test pytest -ra
-
-.PHONY: d_test_api
-d_test_api:
-	@docker compose exec test pytest test/api
-
-.PHONY: d_test_ui
-d_test_ui:
-	@docker compose exec test pytest test/ui
+	docker-compose up
 
 .PHONY: test_api
 test_api:

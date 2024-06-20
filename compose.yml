@@ -1,12 +1,11 @@
-name: mgc-test
+name: mgc
 services:
   test:
     platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - .:/code
+    command:
+      - pytest
     env_file:
-      - ./.env.docker
-    restart: unless-stopped
+      - .env.docker
