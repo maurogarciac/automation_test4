@@ -1,20 +1,16 @@
-import pytest
+import os
 from datetime import datetime
 
-
-# Reads flags and options
-def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", help="browser to execute the automation")
+import pytest
 
 
-# Reporting config
-@pytest.hookimpl(tryfirst=True, hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    rep = outcome.get_result()
-
-    setattr(item, "rep_" + rep.when, rep)
+# Global test configuration file
+def pytest_addoption(parser):  # Reads flags and options
+    parser.addoption("--browser", action="store", default="chrome_headless", help="browser to execute the automation")
 
 
-def pytest_html_report_title(report):
-    report.title = datetime.date
+@pytest.hookimpl(tryfirst=True)
+def pytest_configure(config):
+    if not os.path.exists('reports'):
+        os.makedirs('reports')
+    config.option.htmlpath = f"reports/report-{datetime.now().strftime('%Y-%b-%d-%H:%M')}.html"

@@ -25,4 +25,4 @@ class TestUI:
     def test_that_fails(self, pages, driver):
         home_page: HomePage = pages['home_page']
         home_page.go_to_page()
-        assert "error" == driver.current_url
+        assert False

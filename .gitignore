@@ -136,4 +136,4 @@ dmypy.json
 reports/*.html
 reports/*.xml
 reports/screenshots
-
+reports/assets/*.css

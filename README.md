@@ -4,14 +4,15 @@ Just a simple test automation framework with pytest that supports ui and api tes
 
 ## Requirements:
 
-* Python 3.12 installed
+* Python 3.12
 
-## Optional requirements (do yourself a favor):
+## Optional *recommended* requirements:
 
-* Make 4.4.1 (or compatible version)
-* Docker 26.1.1 (or compatible version)
+* Make 4.4.1
+* Docker 26.1.1
+* docker-compose 2.27
 
-## Quick installation steps
+## Local setup steps:
 
 1. Clone this Repository and change directory into it:
     ```shell
@@ -23,9 +24,12 @@ Just a simple test automation framework with pytest that supports ui and api tes
     python -m venv .venv
     ```
 3. Activate the Environment:
+    - Linux
     ```shell
+    chmod +x .venv/Scripts/activate
     .venv/Scripts/activate
     ```
+    - MacOs
     ```shell
     source .venv/Scripts/activate
     ```
@@ -33,38 +37,51 @@ Just a simple test automation framework with pytest that supports ui and api tes
     ```shell
     python -m pip install -r requirements.txt
     ``` 
-5. Run tests:
-   To run all the tests, just run `pytest` in local env or `make test` for docker container.
 
-    ### Flags for execution:
-        An optional '--browser' flag can be included after 'pytest' to specify the browser option (default is 'chrome'):
-        - firefox
-        - chrome_headless
-        - remote (not working, requires remote-wd setup)
+## Docker setup steps:
+1. Clone this Repository and change directory into it:
+    ```shell
+    git clone https://github.com/maurogarciac/automation_test4.git
+    cd automation_test4
+    ```
 
-    1. api tests
-    2. ui tests
+2. I'm guessing probably run:
+    ```shell
+    docker-compose up
+    ```
 
-    - Locally with pytest:
-        ```shell
-        pytest tests/api
-        pytest tests/ui
-        ```
-    - Locally with Make:
-        ```shell
-        make test_ui_f
-        make test_ui_hl
-        ```
+## Run tests:  
+To run all the tests, just run `pytest` in local env or `make d_test` for docker container.  
 
-    - With Docker:
-        ```shell
-        make d_test
-        make d_test_api
-        make d_test_ui_hl
-        ```
+### Flags for execution:
+An optional `--browser` flag can be included after `pytest` to specify the browser option (defaults to *chrome*):  
+
+> * chrome
+> * firefox
+> * chrome_headless
+> * remote (not working currently, requires remote-wd setup)
+    
+#### These are the commands to run the test groups, __api__ and __ui__: 
+
+- Locally with pytest:
+    ```shell
+    pytest tests/api
+    pytest tests/ui
+    ```
+- Locally with Make (only longer commands):
+    ```shell
+    make test_ui_f
+    make test_ui_c
+    ```
+
+- In the Docker container:
+    ```shell
+    make d_test
+    make d_test_api
+    make d_test_ui
+    ```
 
 ## To do:
 
 1. Add docker support
-2. Solve report generation issue (not generating rn)
-3. Add more tests
+2. Add more tests
