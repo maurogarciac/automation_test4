@@ -46,7 +46,7 @@ Just a simple test automation framework with pytest that supports ui and api tes
     cd automation_test4
     ```
 
-2. Either run `docker-compose up -d` or `make start`
+2. Either run `docker-compose up` or `make d_test`
 
 ## Run tests:  
 To run all the tests, just run `pytest` in local env or `make d_test` for docker container.  
@@ -66,20 +66,14 @@ An optional `--browser` flag can be included after `pytest` to specify the brows
     pytest tests/api
     pytest tests/ui
     ```
-- Locally with Make (only longer commands):
+- Locally with Make (to run in visual browsers):
     ```shell
     make test_ui_f
     make test_ui_c
     ```
 
-- In the Docker container:
-    ```shell
-    make d_test
-    make d_test_api
-    make d_test_ui
-    ```
-
 ## To do:
 
 1. Export reports from docker container to docker-reports directory
-2. Add more tests
+2. Implement pytest-parallel
+3. Add more tests
