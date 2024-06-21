@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.service import Service as C_Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
-from tests.ui.pages.home_page import HomePage
+from tests.ui.pages.login_page import LoginPage
 from tests.ui.utils.screenshots import ScreenshotUtils
 
 lg: Logger = getLogger(__name__)
@@ -53,7 +53,7 @@ def driver(request: FixtureRequest):
 @pytest.fixture
 def pages():
     """
-        Adds base page objects to local symbol table
+        Adds root page objects to local symbol table and passes driver to them
     """
-    home_page = HomePage(_driver)
+    home_page = LoginPage(_driver)
     return locals()

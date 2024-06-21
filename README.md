@@ -1,4 +1,4 @@
-# Automation Test 4 (pytest implementation)
+# Asapp Challenge by Mauro Garcia
 
 Just a simple test automation framework with pytest that supports ui and api tests
 
@@ -74,6 +74,8 @@ An optional `--browser` flag can be included after `pytest` to specify the brows
 
 ## To do:
 
-1. Export reports from docker container to docker-reports directory
-2. Implement pytest-parallel
-3. Add more tests
+1. Add page objects for cart page
+2. Add UI tests
+3. Add API tests
+4. Export reports from docker container to docker-reports directory
+5. Implement pytest-parallel?

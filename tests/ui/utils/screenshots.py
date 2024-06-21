@@ -17,12 +17,10 @@ class ScreenshotUtils:
         self.timestamp = datetime.now().strftime('%Y-%b-%d-%H:%M')
 
     def save_picture(self, request: FixtureRequest, driver: webdriver) -> None:
-        """
-            Take two screenshots, one of the full page and a partial screenshot.
+        """Take two screenshots, one of the full page and a partial screenshot and save them as a .png file
 
-            Params:
-            @request: Pytest request fixture
-            @driver: Current webdriver
+            :param request: Pytest request fixture
+            :param driver: Current webdriver
         """
 
         class_str = (re.search(r"\.(Test[A-Z]+)", str(request.cls))
@@ -34,13 +32,11 @@ class ScreenshotUtils:
             driver.save_screenshot(f"{screenshot_file_name}.png")
 
     def _make_screenshots_dir(self, test_class: str) -> str:
-        """
-            Create a directory to store screenshots for a test (if it doesn't exist already)
+        """Create a directory to store screenshots for a test (if it doesn't exist already)
 
-            Params:
-            @request: Pytest request fixture
+            :param test_class: Pytest Test Class
 
-            Return: Full path to screenshot directory
+            :returns: Full path to screenshot directory
         """
 
         screenshots_directory: str = path.join(getcwd(), "reports/screenshots")

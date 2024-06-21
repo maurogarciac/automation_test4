@@ -1,6 +1,6 @@
 from config.settings import Urls
-from tests.ui.pages.home_page import HomePage
-from tests.ui.pages.results_page import BaseResultPage
+from tests.ui.pages.login_page import HomePage
+from tests.ui.pages.store_page import BaseResultPage
 from logging import Logger, getLogger
 
 lg: Logger = getLogger(__name__)
