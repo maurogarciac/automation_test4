@@ -7,5 +7,7 @@ services:
       dockerfile: Dockerfile
     command:
       - pytest
+#    volumes:
+#      -
     env_file:
       - .env.docker

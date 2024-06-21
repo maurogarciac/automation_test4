@@ -76,4 +76,5 @@ An optional `--browser` flag can be included after `pytest` to specify the brows
 
 1. Export reports from docker container to docker-reports directory
 2. Implement pytest-parallel
-3. Add more tests
+3. Add ruff linter
+4. Add more tests
